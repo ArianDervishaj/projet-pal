@@ -4,18 +4,20 @@
 
 {% load static %}
 
-
+{% block style%}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+{% endblock %}
 
 {% block content%} 
-    {% for item in latest_items_list.all %}
-    <a href="/{{item.id}}">
-
-        <div class="index">
+    <div class="index-container">
+        {% for item in latest_items_list.all %}
+        <a href="/{{item.id}}" class="item-card">
+            <p class="item-type">{{item.type}}</p>
             <h2>{{item.name}}</h2>
-            <p>{{item.type}}</p>
+            <img src="{% static 'images/test.jpg' %}" alt="My image">
             <p>{{item.location}}</p>
             <p>{{item.state}}</p>
-        </div>
-    </a>
-    {%endfor%} 
+        </a>
+        {%endfor%} 
+    </div>
 {%endblock%}
