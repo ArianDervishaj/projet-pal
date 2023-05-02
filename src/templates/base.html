@@ -19,8 +19,13 @@
       </div>
       <div class="menu">
         <a href="/">Home</a>
-        <a>About</a>
-        <a>Connexion</a>
+        
+        {% if user.is_authenticated %}
+        <a>Chat</a>  
+        <a href="/logout">Deconnexion</a>
+        {% else %}
+          <a href="/login">Connexion</a>
+        {% endif %}
       </div>
     </header>
 
