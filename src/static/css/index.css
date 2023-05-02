@@ -1,23 +1,65 @@
-.index-container {
-    margin: 0px auto;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+.container {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    justify-content: center;
+}
+.index-container {
+  max-width: 50%;
+  margin: 32px auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:space-around;
 }
 
 .item-card {
-    position: relative;
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    padding: 8px;
-    background: #656464;
-    margin: 0px 16px
+  color: #292c2f;
+  text-decoration: none;
+  position: relative;
+  display: flex;
+  width: 28%;
+  border-radius: 16px;
+  text-align: center;
+  flex-direction: column;
+  margin: 0px 16px 16px 16px;
+  background: #f0f0f0;
+  border: 1px solid #f0f0f0;
+  box-shadow: 4px 2px 4px #f0f0f0 ;
 }
 
+.item-card:hover {
+    scale: 105%;
+    transition: ease-in-out;
+    transition-duration: 300ms;
+}
+
+.item-card h2 {
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-size: 24px;
+  padding-top: 8px;
+}
+
+.item-card img {
+  width: 100%;
+  max-height: 80%;
+  border-radius: 16px 16px 0px 0px;
+  object-fit: cover;
+}
 .item-type {
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    background-color: green;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: green;
+  color: white;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 24px; 
 }

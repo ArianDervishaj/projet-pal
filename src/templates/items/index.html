@@ -1,23 +1,21 @@
-{% extends '../base.html' %} 
-
+{% extends '../base.html' %}
+{% load static%} 
 {% block title%} List {%endblock%} 
-
-{% load static %}
-
-{% block style%}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
-{% endblock %}
-
-{% block content%} 
-    <div class="index-container">
-        {% for item in latest_items_list.all %}
-        <a href="/{{item.id}}" class="item-card">
-            <p class="item-type">{{item.type}}</p>
-            <h2>{{item.name}}</h2>
-            <img src="{% static 'images/test.jpg' %}" alt="My image">
-            <p>{{item.location}}</p>
-            <p>{{item.state}}</p>
-        </a>
-        {%endfor%} 
+{% block style%} <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" /> {% endblock %} 
+{% block content%}
+    <div class="container">
+        <div class="index-container">
+            {% for item in latest_items_list.all %}
+            <a href="/{{item.id}}" class="item-card">
+                <p class="item-type">{{item.type}}</p>
+                <img src="{% static 'images/test.jpg' %}" alt="My image" />
+                <h2>{{item.name}}</h2>
+                <div class="item-info">
+                    <p>{{item.state}}</p>
+                    <p>{{item.location}}</p>
+                </div>
+            </a>
+            {%endfor%}
+        </div>
     </div>
 {%endblock%}
