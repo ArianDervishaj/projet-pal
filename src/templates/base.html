@@ -1,12 +1,35 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
   <head>
     <title>{% block title %} Share it{% endblock %}</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
   </head>
 
   <body>
+    <header>
+      <h1 class="logo">Share It</h1>
+      <div class="search">
+        <input class="search-bar"/>
+        <button type="button" class="btn-search"> Chercher   </button>
+      </div>
+      <div class="menu">
+        <a href="/">Home</a>
+        <a>About</a>
+        <a>Connexion</a>
+      </div>
+    </header>
+
     <div id="content" name="content">{% block content%} {% endblock %}</div>
+
+    <footer>
+      <p class="footer-links">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </p>
+      <p>Share it &copy; 2023</p>
+    </footer>
   </body>
 </html>
