@@ -1,0 +1,14 @@
+{% extends "base.html" %} 
+{% block title%} Créer un compte {% endblock %} 
+
+{% load crispy_forms_tags%}
+
+{%block content %}
+<div class="d-flex">
+
+   <form method="POST" class="form-group mx-auto my-4">
+      {% csrf_token %} {{form|crispy}}
+      <button type="submit" class="btn btn-primary">Register</button>
+   </form>
+</div>
+{% endblock %}
