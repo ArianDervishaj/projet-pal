@@ -1,0 +1,21 @@
+{% extends '../base.html' %} 
+
+{% block title%} List {%endblock%} 
+
+{% load static %}
+
+
+
+{% block content%} 
+    {% for item in latest_items_list.all %}
+    <a href="/{{item.id}}">
+
+        <div class="index">
+            <h2>{{item.name}}</h2>
+            <p>{{item.type}}</p>
+            <p>{{item.location}}</p>
+            <p>{{item.state}}</p>
+        </div>
+    </a>
+    {%endfor%} 
+{%endblock%}
