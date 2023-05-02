@@ -7,7 +7,7 @@
 {% endblock %} 
 
 {% block content%}
-<div class="d-flex flex-row justify-content-center gap-2">
+<div class="d-flex flex-row justify-content-center gap-2 index-container">
   <div class="d-flex flex-row flex-wrap item-container justify-content-center">
     {% for item in latest_items_list.all %}
     <a href="/{{item.id}}" class="card item-card">
