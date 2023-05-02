@@ -4,7 +4,11 @@ from .models import Item
 def index(request):
     latest_items_list = Item.objects.order_by("-created_at")
     context = {"latest_items_list": latest_items_list}
-    render(request, "../templates/index.html", context)
+    return render(request, "items/index.html", context)
 
-def homepage(request):
-    return render(request, "homepage.html")
+def home(request):
+    return render(request, "home.html")
+
+def detail(request, id):
+    item = Item.objects.get(id=id)
+    return render(request, "items/detail.html", {"item": item})
