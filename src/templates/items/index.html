@@ -1,21 +1,33 @@
 {% extends '../base.html' %}
 {% load static%} 
-{% block title%} List {%endblock%} 
-{% block style%} <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" /> {% endblock %} 
+{% block title%} List {%endblock%}
+
+{% block style%}
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" /> 
+{% endblock %} 
+
 {% block content%}
-    <div class="container">
-        <div class="index-container">
-            {% for item in latest_items_list.all %}
-            <a href="/{{item.id}}" class="item-card">
-                <p class="item-type">{{item.type}}</p>
-                <img src="{% static 'images/test.jpg' %}" alt="My image" />
-                <h2>{{item.name}}</h2>
-                <div class="item-info">
-                    <p>{{item.state}}</p>
-                    <p>{{item.location}}</p>
-                </div>
-            </a>
-            {%endfor%}
+<div class="d-flex flex-row justify-content-center gap-2">
+  <div class="d-flex flex-row flex-wrap item-container justify-content-center">
+    {% for item in latest_items_list.all %}
+    <a href="/{{item.id}}" class="card item-card">
+      <h5>
+        <span class="badge text-bg-success item-type">{{item.type}}</span>
+      </h5>
+      <img
+        src="{% static 'images/test.jpg' %}"
+        alt="{{item.name}}"
+        class="card-img-top object-fit-contain item-image"
+      />
+      <div class="card-body item-body">
+        <h2 class="card-title">{{item.name}}</h2>
+        <div class="d-flex flex-row justify-content-between">
+          <p class="">{{item.state}}</p>
+          <p>{{item.location}}</p>
         </div>
-    </div>
+      </div>
+    </a>
+    {%endfor%}
+  </div>
+</div>
 {%endblock%}
