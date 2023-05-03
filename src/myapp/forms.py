@@ -8,7 +8,7 @@ class CreateNewItemForm(forms.ModelForm):
         fields = ['name', 'description', 'location', 'image', 'state', 'category', 'type']
         labels = {
             "name": "Titre",
-            "description": "Déscription",
+            "description": "Description",
             "location": "Ville et Pays",
             "state": "État de l'objet",
             "category": "Categorie",

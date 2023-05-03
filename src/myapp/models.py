@@ -1,8 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
+import os
+from uuid import uuid4
+
+def generate_filename(instance, filename):
+    """Generate a new filename for the uploaded image"""
+    ext = filename.split('.')[-1]
+    new_filename = f"{uuid4().hex}.{ext}"
+    return new_filename
 
 # Create your models here.
-
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -29,7 +36,7 @@ class Item(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     location = models.CharField(max_length=255)
-    image = models.ImageField(default=None, blank=True, null=True)
+    image = models.ImageField(upload_to=generate_filename, default="default.jpg", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     state = models.ForeignKey(State, on_delete=models.CASCADE)
