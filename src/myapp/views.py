@@ -1,22 +1,29 @@
 from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponseForbidden
-from .models import Item
+from .models import Item, Category
 from .forms import CreateNewItemForm
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
+from django.db.models.functions import Lower
 # Create your views here.
 
 
-def index(request):
-    query = request.GET.get('q')
-    if query:
+def index(request,category_name=None):
+    search_query = request.GET.get('search-query')
+    all_categories = Category.objects.order_by(Lower('name')).all()
+    
+    if search_query:
         latest_items_list = Item.objects.filter(
-            Q(name__icontains=query) | Q(description__icontains=query)
+            Q(name__icontains=search_query) | Q(description__icontains=search_query)
         ).order_by('-created_at')
+    elif category_name:
+        selected_category = get_object_or_404(Category, name=category_name)
+        latest_items_list = Item.objects.filter(category=selected_category).order_by('-created_at')
     else:
         latest_items_list = Item.objects.order_by('-created_at')
     context = {
         'latest_items_list': latest_items_list,
+        'all_categories': all_categories
     }
     return render(request, 'items/index.html', context)
 

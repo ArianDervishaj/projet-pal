@@ -7,7 +7,7 @@
 
 .item-card {
   color: #292c2f;
-  text-decoration: none;  
+  text-decoration: none;
   text-align: center;
   width: 15vw;
   height: 30vh;
@@ -18,13 +18,26 @@
   height: 100%;
 }
 .item-card:hover {
-    scale: 105%;
-    transition: ease-in-out;
-    transition-duration: 300ms;
+  scale: 105%;
+  transition: ease-in-out;
+  transition-duration: 300ms;
 }
 
 .item-type {
   position: absolute;
   top: 8px;
   left: 8px;
+}
+
+.sidemenu {
+  text-decoration: none;
+  color: #292c2f;
+}
+
+.sidemenu:hover {
+  color: #00aaff;
+}
+
+.sidemenu:hover a {
+  color: #00aaff;
 }

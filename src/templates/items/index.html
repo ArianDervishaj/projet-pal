@@ -6,6 +6,22 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" /> 
 {% endblock %} 
 
+{% block sidemenu %}
+<div class="d-flex">
+<section class="d-flex flex-column mx-auto mt-4" style="min-width: 80%;">
+{% for category in all_categories.all %}
+
+<a href="{% url 'index_by_category' category.name %}" class="sidemenu">
+  {{category.name}}
+  <hr class=" mt-0"/>
+</a>
+  
+{% endfor %}
+</section>
+
+{% endblock sidemenu %}
+
+
 {% block content%}
 <div class="d-flex flex-row justify-content-center gap-2 index-container">
   <div class="d-flex flex-row flex-wrap item-container justify-content-center">
