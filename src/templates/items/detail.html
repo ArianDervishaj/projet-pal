@@ -11,7 +11,7 @@
         <div class="col-md-4 text-center max-width:30%; max-height: 80%;">
             <img
             src="images/{{item.image}}"
-            class="object-fit-contain rounded-start"
+            class="object-fit-contain rounded-start mt-4"
             style="max-height: 50vh; max-width: 90%;"
             alt="{{item.name}}"
             />
@@ -32,7 +32,7 @@
         </div>
         </div>
         {% if request.user == item.user %}
-            <div class="d-flex flex-row justify-content-between mx-5 mb-3">
+            <div class="d-flex flex-row justify-content-between mx-5 mb-3 mt-4">
                 <a href="{% url 'item-edit' item.id %}" class="btn btn-secondary btn-sm">Modifier</a>
                 <form action="{% url 'delete-item' item.id %}" method="post">
                     {% csrf_token %}

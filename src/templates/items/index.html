@@ -1,48 +1,52 @@
 {% extends "base.html" %} 
 {% load static%} 
-{% block title%} List {%endblock%}
-
-{% block style%}
-<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" /> 
+{% block title%} Share It {%endblock%} 
+{%block style%}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" />
 {% endblock %} 
-
 {% block sidemenu %}
-<div class="d-flex">
-<section class="d-flex flex-column mx-auto mt-4" style="min-width: 80%;">
-{% for category in all_categories.all %}
+  <div class="d-flex">
+    <section class="d-flex flex-column mx-auto mt-4" style="min-width: 80%">
+      <a href="/" class="sidemenu">
+        Tout
+        <hr class="mt-0" />
+      </a>
+      {% for category in all_categories.all %}
 
-<a href="{% url 'index_by_category' category.name %}" class="sidemenu">
-  {{category.name}}
-  <hr class=" mt-0"/>
-</a>
-  
-{% endfor %}
-</section>
+      <a href="{% url 'index_by_category' category.name %}" class="sidemenu">
+        {{category.name}}
+        <hr class="mt-0" />
+      </a>
 
-{% endblock sidemenu %}
-
-
-{% block content%}
-<div class="d-flex flex-row justify-content-center gap-2 index-container">
-  <div class="d-flex flex-row flex-wrap item-container justify-content-center">
-    {% for item in latest_items_list.all %}
-    <a href="/{{item.id}}" class="card item-card">
-      <h5>
-        <span class="badge text-bg-success item-type">{{item.type}}</span>
-      </h5>
-      <img src="/images/{{item.image}}"
-        alt="{{item.name}}"
-        class="card-img-top object-fit-contain item-image"
-      />
-      <div class="card-body item-body">
-        <h2 class="card-title">{{item.name}}</h2>
-        <div class="d-flex flex-row justify-content-between">
-          <p class="">{{item.state}}</p>
-          <p>{{item.location}}</p>
-        </div>
-      </div>
-    </a>
-    {%endfor%}
+      {% endfor %}
+    </section>
   </div>
+{% endblock sidemenu %}
+  {% block content%}
+  <div class="d-flex flex-row justify-content-center gap-2 index-container">
+    <div
+      class="d-flex flex-row flex-wrap item-container justify-content-center"
+    >
+      {% for item in latest_items_list.all %}
+      <a href="/{{item.id}}" class="card item-card">
+        <h5>
+          <span class="badge text-bg-success item-type">{{item.type}}</span>
+        </h5>
+        <img
+          src="/images/{{item.image}}"
+          alt="{{item.name}}"
+          class="card-img-top object-fit-contain item-image"
+        />
+        <div class="card-body item-body">
+          <h2 class="card-title">{{item.name}}</h2>
+          <div class="d-flex flex-row justify-content-between">
+            <p class="">{{item.state}}</p>
+            <p>{{item.location}}</p>
+          </div>
+        </div>
+      </a>
+      {%endfor%}
+    </div>
+  </div>
+  {%endblock%}
 </div>
-{%endblock%}
