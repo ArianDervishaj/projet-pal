@@ -12,11 +12,14 @@
 
   <body class="d-flex flex-column">
     <header>
-      <h1 class="logo">Share It</h1>
+      <h1 class="logo"><a href="/" >Share It</a></h1>
       <div class="search">
-        <input class="search-bar"/>
-        <button type="button" class="btn-search"> Chercher   </button>
+        <form action="{% url 'search-items' %}" method="get">
+          <input type="text" name="q" class="search-bar" placeholder="Search items">
+          <button type="submit" class="btn-search">Search</button>
+        </form>
       </div>
+      
       <div class="menu">
         <a href="/">Home</a>
         

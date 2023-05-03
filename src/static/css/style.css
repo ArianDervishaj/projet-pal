@@ -100,3 +100,9 @@ footer p.footer-links a {
 footer p.footer-links a:hover {
   text-decoration: underline;
 }
+
+h1 a {
+  text-decoration: none;
+  color: white;
+}
+

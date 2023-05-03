@@ -3,13 +3,22 @@ from django.http import HttpResponseForbidden
 from .models import Item
 from .forms import CreateNewItemForm
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Q
 # Create your views here.
 
 
 def index(request):
-    latest_items_list = Item.objects.order_by("-created_at")
-    context = {"latest_items_list": latest_items_list}
-    return render(request, "items/index.html", context)
+    query = request.GET.get('q')
+    if query:
+        latest_items_list = Item.objects.filter(
+            Q(name__icontains=query) | Q(description__icontains=query)
+        ).order_by('-created_at')
+    else:
+        latest_items_list = Item.objects.order_by('-created_at')
+    context = {
+        'latest_items_list': latest_items_list,
+    }
+    return render(request, 'items/index.html', context)
 
 
 def home(request):
