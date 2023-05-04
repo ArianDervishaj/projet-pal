@@ -1,5 +1,7 @@
 from django.http import HttpResponseNotAllowed
 from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib.auth.decorators import login_required
+from myapp.models import Item
 from .models import Chat, Message
 from django.contrib.auth.models import User
 # Create your views here.
@@ -38,3 +40,11 @@ def create_message(request, chat_id):
         message.save()
         
     return redirect('chat-detail', id=chat_id)
+
+@login_required
+def create_chat(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    chat = Chat.objects.create(item=item)
+    chat.participants.add(request.user)
+    chat.participants.add(item.user)
+    return redirect('chat-detail', id=chat.id)

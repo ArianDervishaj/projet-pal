@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-import os
 from uuid import uuid4
 
 def generate_filename(instance, filename):
