@@ -1,0 +1,12 @@
+{% extends "base.html" %} 
+{% block content %}
+
+<h1>A propos {{chat.item.name}}</h1>
+{% for message in chat.messages.all  %}
+<p>{{message.sender}}</p>
+<p>{{message.content}}</p>
+
+{% endfor %}
+{% endblock content %}
+
+
