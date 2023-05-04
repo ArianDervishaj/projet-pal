@@ -6,23 +6,18 @@ from django.contrib.auth.models import User
 
 
 class Chat(models.Model):
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    users = models.ManyToManyField(User)
+    participants = models.ManyToManyField(User, related_name='chats')
     created_at = models.DateTimeField(auto_now_add=True)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.item} chat"
 
 class Message(models.Model):
-    content = models.TextField()
+    chat = models.ForeignKey(Chat, on_delete=models.CASCADE, related_name='messages')
     sender = models.ForeignKey(User, on_delete=models.CASCADE)
-    chat = models.ForeignKey(Chat, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
 
-
-class ChatMember(models.Model):
-    chat = models.ForeignKey(Chat, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    # other fields for chat member details
-
-    class Meta:
-        unique_together = ('chat', 'user')
-        # make sure a user can only be a member of a chat once
+    def __str__(self):
+        return f"{self.sender} in {self.chat}"
