@@ -6,10 +6,11 @@ from .forms import RegisterForm
 # Create your views here.
 def register(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
-        return redirect("/")
+            user = form.save()
+            login(request, user)
+            return redirect("/")
     else:
-        form=RegisterForm()
-    return render(request, "register/register.html", {"form":form})
+        form = RegisterForm()
+    return render(request, "register/register.html", {"form": form})
