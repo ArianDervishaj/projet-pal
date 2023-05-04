@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="my-3 d-flex flex-column mx-auto" style="width:70%;">
-
+<h2 class="text-center font-semibold mb-4">Discussions</h2>
 {% for chat in chats.all  %}
 <div class="card mb-3 mx-auto position-relative" style="max-width: 540px;">
     <form action="{% url 'delete-chat' chat.id %}" method="post">
@@ -16,12 +16,14 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body ">
-                    <h5 class="card-title">A propos {{chat.item.name}}</h5>
-                    <p class="card-text">{% for participant in chat.participants.all %}
+                    <h5 class="card-title">{{chat.item.name}}</h5>
+                    <p class="card-text">
+                        {% for participant in chat.participants.all %}
                         {% if request.user != participant %}
                             {{participant}}
                         {% endif %}
-                        {% endfor %}</p>
+                        {% endfor %}
+                    </p>
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
             </div>

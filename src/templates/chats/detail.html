@@ -1,12 +1,57 @@
 {% extends "base.html" %} 
+
 {% block content %}
+<div class="my-4 border border-2 border-secondary rounded-3 d-flex flex-column pt-2">
+    <section class="border-bottom border-1 border-secondary px-2">
+        <h4>       
+            {% for participant in chat.participants.all %}
+            {% if request.user != participant %}
+                Discussion avec {{participant}}
+            {% endif %}
+            {% endfor %}</h4>
+    </section>
+    <section class="d-flex flex-row">
+        <div class="d-flex flex-column justify-content-between" style="width:70%; height:70vh">
+        <section class="pt-2 px-2 overflow-scroll" style="height:100%" >
+            {% for message in chat.messages.all %}
+                {% if request.user == message.sender %}
+                <div class="d-flex justify-content-end ">
+                    <div class="bg-success bg-opacity-25  rounded-3 py-1 px-2 mb-2" style="width:40%;">
+                        <div class="d-flex flex-row justify-content-between" style="font-size: 14px;">
+                            <p class="fw-semibold">{{message.sender}}</p>
+                            <p>{{message.timestamp}}</p>
+                        </div>
+                        <p class="text-break">{{message.content}}</p>
+                    </div>
+                </div>
+                {% else %}
+                    <div class="bg-secondary bg-opacity-10  rounded-3 py-1 px-2 mb-2" style="width:40%;">
+                        <div class="d-flex flex-row justify-content-between" style="font-size: 14px;">
+                            <p class="fw-semibold">{{message.sender}}</p>
+                            <p>{{message.timestamp}}</p>
+                        </div>
+                        <p class="text-break">{{message.content}}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </section>
+        <form method="post" action="{% url 'create_message' chat.id %}">
+            {% csrf_token %}
+            <div class="d-flex flex-row">
+                <textarea class="form-control rounded-0" style="width:90%" id="content" name="content" rows="2"></textarea>
+                <button type="submit" class="btn btn-primary rounded-0" style="width:10%">Envoyer</button>
+            </div>
+        </form>
+    </div>
+        <section class="border-start border-2 px-2 py-2 d-flex flex-column text-center " style="width:30%;">
+            <img src="/images/{{chat.item.image}}" class="object-fit-contain mb-4" style="height:30vh;" alt="{{chat.item.name}}">
+            <h4 class="mx-auto mb-2" style="width:50%">{{chat.item.name}}</h4>
+            <p class="mx-auto" style="width:50%"><span class="fw-semibold"> </span> {{chat.item.state}} </p>
+            <p class="mx-auto" style="width:50%">{{chat.item.location}}</p>
 
-<h1>A propos {{chat.item.name}}</h1>
-{% for message in chat.messages.all  %}
-<p>{{message.sender}}</p>
-<p>{{message.content}}</p>
-
-{% endfor %}
+        </section>
+    </section>
+</div>
 {% endblock content %}
 
 

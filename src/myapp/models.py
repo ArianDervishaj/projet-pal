@@ -33,7 +33,7 @@ class State(models.Model):
 
 
 class Item(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=100)
     description = models.TextField()
     location = models.CharField(max_length=255)
     image = models.ImageField(upload_to=generate_filename, default="default.jpg", blank=True, null=True)

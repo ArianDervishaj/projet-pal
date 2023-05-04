@@ -19,7 +19,7 @@
     {% block style %} {% endblock %}
   </head>
 
-  <body class="d-flex flex-column">
+  <body class="d-flex flex-column" >
     <header>
       <h1 class="logo"><a href="/">Share It</a></h1>
       <div class="search">
@@ -51,14 +51,14 @@
       <section id="side-menu" style="min-width: 10%">
         {% block sidemenu %}{% endblock sidemenu %}
       </section>
-      <section id="content" name="content" style="min-width: 80%">
+      <section id="content" name="content" style="min-width: 80%; min-height: 82vh">
         {% block content%} {% endblock %}
       </section>
     </div>
     <footer>
       <p class="footer-links">
+        <a href="#">{{user}}</a>
         <a href="/">Home</a>
-        <a href="#">About</a>
         <a href="#">Contact</a>
       </p>
       <p>Share it &copy; 2023</p>
