@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from uuid import uuid4
 
 def generate_filename(instance, filename):
-    """Generate a new filename for the uploaded image"""
+    #Generate a new filename for the uploaded image
     ext = filename.split('.')[-1]
     new_filename = f"{uuid4().hex}.{ext}"
     return new_filename
