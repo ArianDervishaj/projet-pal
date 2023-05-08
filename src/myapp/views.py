@@ -7,8 +7,12 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 
 
+# from django.contrib import messages
+# def message(request):
+#    messages.add_message(request, messages.INFO, "Hello world.")
 # Create your views here.
 
+ 
 
 def index(request,category_name=None):
     search_query = request.GET.get('search-query')

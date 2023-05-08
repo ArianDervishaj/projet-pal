@@ -47,7 +47,11 @@ def create_chat(request, item_id):
     user = request.user
     
     # Check if a chat already exists with the same participants
-    existing_chat = Chat.objects.filter(item=item, participants=user).first()
+    try:
+        existing_chat = Chat.objects.get(item=item, participants=user)
+    except:
+        existing_chat = None
+
     if existing_chat:
         return redirect('chat-detail', id=existing_chat.id)
     

@@ -22,20 +22,30 @@
     </section>
   </div>
 {% endblock sidemenu %}
+{% comment %} {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %} {% endcomment %}
   {% block content%}
-  <div class="d-flex flex-row justify-content-center gap-2 index-container">
+
     <div
-      class="d-flex flex-row flex-wrap item-container justify-content-center"
+      class="container"
     >
+      <div class="row">
       {% for item in latest_items_list.all %}
-      <a href="/{{item.id}}" class="card item-card">
+      <div class="col-sm-4 my-4">
+      <a href="/{{item.id}}" class="card item-card text-decoration-none position-relative" style="height:35vh">
         <h5>
           <span class="badge text-bg-success item-type">{{item.type}}</span>
         </h5>
         <img
           src="/images/{{item.image}}"
           alt="{{item.name}}"
-          class="card-img-top object-fit-contain item-image"
+          class="card-img-top object-fit-contain"
+          style="width:100%; height:100%;"
         />
         <div class="card-body item-body">
           <h2 class="card-title">{{item.name}}</h2>
@@ -45,8 +55,9 @@
           </div>
         </div>
       </a>
+    </div>
       {%endfor%}
     </div>
-  </div>
+    </div>
   {%endblock%}
 </div>

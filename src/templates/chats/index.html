@@ -4,7 +4,7 @@
 <div class="my-3 d-flex flex-column mx-auto" style="width:70%;">
 <h2 class="text-center font-semibold mb-4">Discussions</h2>
 {% for chat in chats.all  %}
-<div class="card mb-3 mx-auto position-relative" style="max-width: 540px;">
+<div class="card mb-3 mx-auto position-relative p-3" style="max-width: 540px;">
     <form action="{% url 'delete-chat' chat.id %}" method="post">
         {% csrf_token %}
         <button type="submit" class="position-absolute top-0 start-100 translate-middle btn btn-danger btn-sm py-0 px-1 ">x</button>
@@ -12,7 +12,7 @@
     <a href="/chats/{{chat.id}}" class="text-decoration-none text-body">
         <div class="row g-0">
             <div class="col-md-4">
-                <img src="/images/{{chat.item.image}}" class="img-fluid rounded-start" alt="{{chat.item.name}}">
+                <img src="/images/{{chat.item.image}}" class="object-fit-contains rounded-start p-2" style="max-width:100%" alt="{{chat.item.name}}">
             </div>
             <div class="col-md-8">
                 <div class="card-body ">
