@@ -4,6 +4,7 @@
 <html>
   <head>
     <title>{% block title %} Share it{% endblock %}</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
@@ -28,9 +29,9 @@
             type="text"
             name="search-query"
             class="search-bar"
-            placeholder="Search items"
+            placeholder="Faites votre recherche"
           />
-          <button type="submit" class="btn-search">Search</button>
+          <button type="submit" class="btn-search">Chercher</button>
         </form>
       </div>
 
