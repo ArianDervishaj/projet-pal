@@ -44,7 +44,14 @@ def create_message(request, chat_id):
 @login_required
 def create_chat(request, item_id):
     item = get_object_or_404(Item, id=item_id)
+    user = request.user
+    
+    # Check if a chat already exists with the same participants
+    existing_chat = Chat.objects.filter(item=item, participants=user).first()
+    if existing_chat:
+        return redirect('chat-detail', id=existing_chat.id)
+    
     chat = Chat.objects.create(item=item)
-    chat.participants.add(request.user)
+    chat.participants.add(user)
     chat.participants.add(item.user)
     return redirect('chat-detail', id=chat.id)

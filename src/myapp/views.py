@@ -5,6 +5,8 @@ from .forms import CreateNewItemForm
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from django.db.models.functions import Lower
+
+
 # Create your views here.
 
 
@@ -26,11 +28,6 @@ def index(request,category_name=None):
         'all_categories': all_categories
     }
     return render(request, 'items/index.html', context)
-
-
-def home(request):
-    return render(request, "home.html")
-
 
 def detail(request, id):
     item = Item.objects.get(id=id)
