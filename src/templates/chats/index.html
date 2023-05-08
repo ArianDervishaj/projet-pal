@@ -5,7 +5,7 @@
 <h2 class="text-center font-semibold mb-4">Discussions</h2>
 {% for chat in chats.all  %}
 <div class="card mb-3 mx-auto position-relative p-3" style="max-width: 540px;">
-    <form action="{% url 'delete-chat' chat.id %}" method="post">
+    <form action="{% url 'chat-delete' chat.id %}" method="post">
         {% csrf_token %}
         <button type="submit" class="position-absolute top-0 start-100 translate-middle btn btn-danger btn-sm py-0 px-1 ">x</button>
     </form>

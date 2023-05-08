@@ -40,7 +40,7 @@
                 </form>
             </div>
         {% elif user.is_authenticated %}
-        <form action="{% url 'create_chat' item.id %}" method="post" class="d-flex mx-auto justify-content-center" style="width:50%">
+        <form action="{% url 'chat-create' item.id %}" method="post" class="d-flex mx-auto justify-content-center" style="width:50%">
             {% csrf_token %}
             <button type="submit" class="btn btn-primary btn-sm  mb-2 py-2" >Envoyer un message</button>
         </form>

@@ -35,7 +35,7 @@
                 {% endif %}
             {% endfor %}
         </section>
-        <form method="post" action="{% url 'create_message' chat.id %}">
+        <form method="post" action="{% url 'message-create' chat.id %}">
             {% csrf_token %}
             <div class="d-flex flex-row">
                 <textarea class="form-control rounded-0" style="width:90%" id="content" name="content" rows="2"></textarea>
