@@ -16,7 +16,17 @@ You can create an account and send messages to the owner of the item.
 
 I will assume that you have python, pip and django installed already.
 
-Clone the repo, make an virtual environment and activate it.
+Clone the repo
+```bash
+git clone https://github.com/ArianDervishaj/projet-pal.git
+```
+
+Make an virtual environment and activate it.
+
+```python
+python3 -m venv .venv
+source .venv/bin/activate
+```
 
 Then you can install the packages : 
 
