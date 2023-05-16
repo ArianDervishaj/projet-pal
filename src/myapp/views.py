@@ -38,7 +38,7 @@ def detail(request, id):
     return render(request, "items/detail.html", {"item": item})
 
 
-def createItem(request):
+def create_item(request):
     if request.method == 'POST':
         form = CreateNewItemForm(request.POST, request.FILES)
         if form.is_valid():
